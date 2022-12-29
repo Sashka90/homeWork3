@@ -6,8 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Test2 {
+import java.time.Duration;
+
+public class TestChromeInKioskMode {
 
     private WebDriver driver;
 
@@ -22,11 +26,13 @@ public class Test2 {
 
     @Test
     public void homeWorkTest2() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         By image = By.xpath("//li[@class = 'portfolio-item2 content'][2]");
         By popup = By.xpath("//*[@class = 'pp_content_container']");
 
         driver.get(URL);
         driver.findElement(image).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(popup)));
         Assertions.assertTrue(driver.findElement(popup).isDisplayed());
     }
 

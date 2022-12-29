@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class Test3 {
+public class TestChromeInFullScreenMode {
 
     private WebDriver driver;
 
@@ -19,7 +19,7 @@ public class Test3 {
     private String pass = "Ceyogo9446!";
     private static final String URL = "https://otus.ru";
 
-    private static Logger log = LogManager.getLogger(Test3.class);
+    private static Logger log = LogManager.getLogger(TestChromeInFullScreenMode.class);
 
     @BeforeEach
     public void setUp() {

@@ -6,8 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Test1 {
+import java.time.Duration;
+
+public class TestChromeInHeadlesMode {
 
     private WebDriver driver;
 
@@ -22,11 +26,13 @@ public class Test1 {
 
     @Test
     public void homeWorkTest1() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         By searchInput = By.id("search_form_input_homepage");
         By searchButton = By.id("search_button_homepage");
         By firstLink = By.xpath("(//*[@data-testid='result-title-a'])[1]");
 
         driver.get(URL);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(searchInput)));
         driver.findElement(searchInput).sendKeys("ОТУС");
         driver.findElement(searchButton).click();
         Assertions.assertTrue(driver.findElement(firstLink).getText().contains("Онлайн‑курсы для профессионалов, дистанционное обучение"));
