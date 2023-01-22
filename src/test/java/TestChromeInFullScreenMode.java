@@ -8,7 +8,6 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class TestChromeInFullScreenMode {
@@ -31,8 +30,8 @@ public class TestChromeInFullScreenMode {
     @Test
     public void homeWorkTest3() {
         By signInButton = By.xpath("//button[@class = 'header3__button-sign-in']");
-        By inputEmail = By.xpath("//*[@class='new-log-reg__form js-login']/descendant::*[@placeholder='Электронная почта']");
-        By inputPass = By.xpath("//*[@class='new-log-reg__form js-login']/descendant::*[@placeholder='Введите пароль']");
+        By inputEmail = By.xpath("//input[@type='text' and contains(@placeholder, 'Электронная почта')]");
+        By inputPass = By.xpath("//input[@type='password' and contains(@placeholder, 'Введите пароль')]");
         By enterButton = By.xpath("//*[@class='new-log-reg__form js-login']/descendant::button");
 
         driver.get(URL);
@@ -40,9 +39,7 @@ public class TestChromeInFullScreenMode {
         driver.findElement(inputEmail).sendKeys(login);
         driver.findElement(inputPass).sendKeys(pass);
         driver.findElement(enterButton).click();
-        ArrayList<Cookie> cookies = new ArrayList<Cookie>();
-        cookies.addAll(driver.manage().getCookies());
-        for (Cookie x : cookies){
+        for (Cookie x: driver.manage().getCookies()){
             log.info(x);
         }
     }

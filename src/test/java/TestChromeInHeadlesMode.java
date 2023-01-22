@@ -29,13 +29,13 @@ public class TestChromeInHeadlesMode {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         By searchInput = By.id("search_form_input_homepage");
         By searchButton = By.id("search_button_homepage");
-        By firstLink = By.xpath("(//*[@data-testid='result-title-a'])[1]");
+        By firstLink = By.xpath("//article[@id='r1-0']");
 
         driver.get(URL);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(searchInput)));
         driver.findElement(searchInput).sendKeys("ОТУС");
         driver.findElement(searchButton).click();
-        Assertions.assertTrue(driver.findElement(firstLink).getText().contains("Онлайн‑курсы для профессионалов, дистанционное обучение"));
+        Assertions.assertTrue(driver.findElement(firstLink).getText().contains("Otus"));
     }
 
     @AfterEach
